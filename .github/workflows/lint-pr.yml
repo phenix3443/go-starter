@@ -20,10 +20,10 @@ jobs:
             feat
             refactor
             chore
-            ci
           # Configure which scopes are allowed (newline-delimited).
           # These are regex patterns auto-wrapped in `^ $`.
           scopes: |
+            ci
             docs
             tests
           disallowScopes: |
