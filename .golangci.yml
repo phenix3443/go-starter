@@ -24,7 +24,6 @@ linters:
     - importas
     - makezero
     - misspell
-    - megacheck
     - revive
     - staticcheck
     - sqlclosecheck
