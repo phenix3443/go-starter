@@ -4,4 +4,4 @@
 build:
 	go build -o bin/ ./cmd/...
 lint:
-	golangci-lint run 
+	golangci-lint run --new-from-rev=HEAD~1
