@@ -40,4 +40,4 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64, linux/arm64
-          tags: zkmelabs/greeting:latest, zkmelabs/greeting:${{ steps.meta.outputs.tag }}
+          tags: phenix3443/go-starter:latest, phenix3443/go-starter:${{ steps.meta.outputs.tag }}
