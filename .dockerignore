@@ -1,0 +1,7 @@
+# build
+build
+
+.github
+.vscode
+.idea
+node_modules
