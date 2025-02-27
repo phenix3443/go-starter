@@ -1,13 +1,13 @@
-package greeting
+package hello
 
 import (
 	"github.com/stretchr/testify/suite"
 )
 
-type GreetingTestSuite struct {
+type HelloTestSuite struct {
 	suite.Suite
 }
 
-func (s *GreetingTestSuite) TestHello() {
+func (s *HelloTestSuite) TestHello() {
 	s.Equal("Hello, World", Hello("World"))
 }
