@@ -9,7 +9,7 @@
     "safe-directory": "git config --global --add safe.directory ${containerWorkspaceFolder}",
     "known_hosts": "sudo chown vscode:vscode /home/vscode/.ssh && ssh-keyscan github.com > /home/vscode/.ssh/known_hosts",
     "go-tidy": "go env -w GOMODCACHE=/home/vscode/.go-cache && go mod tidy && go generate ./...",
-    "npm-install": "npm install"
+    "npm-install": "npm install -g npm@11.1.0 && npm install"
   },
 
   "customizations": {
@@ -34,6 +34,10 @@
   "features": {
     "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
   },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh/config,target=/home/vscode/.ssh/config,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.ssh/id_ed25519,target=/home/vscode/.ssh/id_ed25519,type=bind,consistency=cached"
+  ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
