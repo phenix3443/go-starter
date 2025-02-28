@@ -1,13 +1,14 @@
 version: 2
 
+
 before:
   hooks:
-    - go mod download
+    - go mod tidy
 
 builds:
   - id: "greeting"
     main: ./app/greeting
-    binary: bin/greeting
+    binary: greeting
     goos:
       - darwin
       - linux
@@ -15,49 +16,29 @@ builds:
     goarch:
       - amd64
       - arm64
-    flags:
-      - -buildmode=exe
     ldflags:
       - -s -w
       - -X main.AppName=greeting
       - -X main.Version={{.Version}}
-      - -X main.Commit={{.Commit}}
-    env:
-      - >-
-        {{- if eq .Os "darwin" }}
-          {{- if eq .Arch "amd64" }}CC=o64-clang{{- end }}
-          {{- if eq .Arch "arm64" }}CC=aarch64-apple-darwin20.2-clang{{- end }}
-        {{- end }}
-        {{- if eq .Os "windows" }}
-          {{- if eq .Arch "amd64" }}CC=x86_64-w64-mingw32-gcc{{- end }}
-          {{- if eq .Arch "arm64" }}CC=aarch64-w64-mingw32-gcc{{- end }}
-        {{- end }}
-        {{- if eq .Os "linux" }}
-          {{- if eq .Arch "amd64" }}CC=gcc{{- end }}
-          {{- if eq .Arch "arm64" }}CC=aarch64-linux-gnu-gcc{{- end }}
-        {{- end }}
+      - -X main.Commit={{.ShortCommit}}
+    ignore:
+      - goos: windows
+        goarch: arm64
         
-
 archives:
-  - format: tar.gz
-    name_template: >-
-      {{ .ProjectName }}_{{ .Os }}_{{- if eq .Arch "amd64" }}x86_64
-      {{- else if eq .Arch "386" }}i386
-      {{- else }}{{ .Arch }}{{ end }}
+  - formats: [tar.gz]
     format_overrides:
       - goos: windows
-        format: zip
+        formats: zip
     files:
       - README.md
+
 changelog:
   sort: asc
   filters:
     exclude:
       - "^docs:"
       - "^test:"
-
-checksum:
-  name_template: "checksums.txt"
 
 release:
   replace_existing_artifacts: true
