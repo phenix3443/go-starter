@@ -1,0 +1,5 @@
+{
+  "default": true,
+  "MD013": false, // 关闭空行规则
+  "MD041": false // 关闭文件标题规则
+}

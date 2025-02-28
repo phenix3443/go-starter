@@ -21,6 +21,10 @@
     ],
     "*.yaml": [
       "prettier --write"
+    ],
+    "*.md": [
+      "markdownlint",
+      "prettier --write"
     ]
   }
 }
