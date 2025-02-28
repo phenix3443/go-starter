@@ -5,97 +5,39 @@ before:
     - go mod download
 
 builds:
-  - id: "greeting-darwin"
-    main: ./cmd/greeting
+  - id: "greeting"
+    main: ./app/greeting
     binary: bin/greeting
-    env:
-      - CGO_ENABLED=1
-      - CC=o64-clang
-      - CXX=o64-clang++
     goos:
       - darwin
-    goarch:
-      - amd64
-    flags:
-      - -tags=cgo
-    ldflags:
-      - -s -w 
-      - -X main.AppName=greeting
-      - -X main.Version={{.Version}}
-      -  -X main.Commit={{.Commit}}
-  - id: "greeting-darwin-arm64"
-    main: ./cmd/greeting
-    binary: bin/greeting
-    env:
-      - CGO_ENABLED=1
-      - CC=oa64-clang
-      - CXX=oa64-clang++
-    goos:
-      - darwin
-    goarch:
-      - arm64
-    flags:
-      - -tags=cgo
-    ldflags:
-      - -s -w 
-      - -X main.AppName=greeting
-      - -X main.Version={{.Version}}
-      - -X main.Commit={{.Commit}}
-  - id: "greeting-linux"
-    main: ./cmd/greeting
-    binary: bin/greeting
-    env:
-      - CGO_ENABLED=1
-      - CC=gcc
-      - CXX=g++
-    goos:
       - linux
-    goarch:
-      - amd64
-    flags:
-      - -tags=cgo
-    ldflags:
-      - -s -w 
-      - -X main.AppName=greeting
-      - -X main.Version={{.Version}}
-      - -X main.Commit={{.Commit}}
-  - id: "greeting-linux-arm64"
-    main: ./cmd/greeting
-    binary: bin/greeting
-    env:
-      - CGO_ENABLED=1
-      - CC=aarch64-linux-gnu-gcc
-      - CXX=aarch64-linux-gnu-g++
-    goos:
-      - linux
-    goarch:
-      - arm64
-    flags:
-      - -tags=cgo
-    ldflags:
-      - -s -w 
-      - -X main.AppName=greeting
-      - -X main.Version={{.Version}}
-      - -X main.Commit={{.Commit}}
-  - id: "greeting-windows"
-    main: ./cmd/greeting
-    binary: bin/greeting
-    env:
-      - CGO_ENABLED=1
-      - CC=x86_64-w64-mingw32-gcc
-      - CXX=x86_64-w64-mingw32-g++
-    goos:
       - windows
     goarch:
       - amd64
+      - arm64
     flags:
-      - -tags=cgo
       - -buildmode=exe
     ldflags:
-      - -s -w 
+      - -s -w
       - -X main.AppName=greeting
       - -X main.Version={{.Version}}
       - -X main.Commit={{.Commit}}
+    env:
+      - >-
+        {{- if eq .Os "darwin" }}
+          {{- if eq .Arch "amd64" }}CC=o64-clang{{- end }}
+          {{- if eq .Arch "arm64" }}CC=aarch64-apple-darwin20.2-clang{{- end }}
+        {{- end }}
+        {{- if eq .Os "windows" }}
+          {{- if eq .Arch "amd64" }}CC=x86_64-w64-mingw32-gcc{{- end }}
+          {{- if eq .Arch "arm64" }}CC=aarch64-w64-mingw32-gcc{{- end }}
+        {{- end }}
+        {{- if eq .Os "linux" }}
+          {{- if eq .Arch "amd64" }}CC=gcc{{- end }}
+          {{- if eq .Arch "arm64" }}CC=aarch64-linux-gnu-gcc{{- end }}
+        {{- end }}
+        
+
 archives:
   - format: tar.gz
     name_template: >-

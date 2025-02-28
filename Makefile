@@ -2,7 +2,7 @@
 .PHONY: lint build
 
 build:
-	go build -o build/ ./cmd/...
+	go build -o build/ ./app/...
 lint:
 	golangci-lint run --new-from-rev=HEAD~1
 
