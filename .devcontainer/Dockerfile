@@ -36,6 +36,11 @@ RUN apt-get update \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh
+    && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh \
+    #
+    # Install go dependencies
+    && go install golang.org/x/tools/cmd/goimports@latest \
+    && go install golang.org/x/tools/gopls@latest \
+    && go install github.com/spf13/cobra-cli@latest
 
 
