@@ -39,6 +39,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh \
     #
     # Install go dependencies
+    && echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list \
+    && apt update \
+    && apt install goreleaser-pro\
     && go install golang.org/x/tools/cmd/goimports@latest \
     && go install golang.org/x/tools/gopls@latest \
     && go install github.com/spf13/cobra-cli@latest

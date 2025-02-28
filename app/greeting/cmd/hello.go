@@ -17,7 +17,7 @@ const (
 var helloCmd = &cobra.Command{
 	Use:   "hello",
 	Short: "Hello is a command to print hello",
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		username := viper.GetString(fmt.Sprintf("hello.%s", FlagUsername))
 		fmt.Printf("Hello, %s!\n", username)
 	},
@@ -26,5 +26,5 @@ var helloCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(helloCmd)
 	helloCmd.Flags().String(FlagUsername, "me", "say hello to this user")
-	viper.BindPFlag(fmt.Sprintf("hello.%s", FlagUsername), helloCmd.Flags().Lookup(FlagUsername))
+	_ = viper.BindPFlag(fmt.Sprintf("hello.%s", FlagUsername), helloCmd.Flags().Lookup(FlagUsername))
 }
