@@ -4,7 +4,8 @@
     "@commitlint/config-conventional": "^19.2.2",
     "husky": "^9.1.3",
     "lint-staged": "^15.2.7",
-    "prettier": "^3.3.3"
+    "markdownlint-cli": "^0.44.0",
+    "prettier": "^3.5.2"
   },
   "scripts": {
     "prepare": "husky"
@@ -17,6 +18,9 @@
     "*.go": [
       "goimports -w",
       "golangci-lint run"
+    ],
+    "*.yaml": [
+      "prettier --write"
     ]
   }
 }
