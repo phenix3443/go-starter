@@ -6,8 +6,7 @@
   "service": "golang",
   "workspaceFolder": "/workspace",
   "postCreateCommand": {
-    "safe-directory": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-    "known_hosts": "sudo chown vscode:vscode /home/vscode/.ssh && ssh-keyscan github.com > /home/vscode/.ssh/known_hosts",
+    "safe-directory": "git config --local --add safe.directory ${containerWorkspaceFolder}",
     "go-tidy": "go env -w GOMODCACHE=/home/vscode/.go-cache && go mod tidy && go generate ./...",
     "npm-install": "npm install -g npm@11.1.0 && npm install"
   },
@@ -33,16 +32,18 @@
         "bierner.github-markdown-preview",
         "eamodio.gitlens",
         "foxundermoon.shell-format",
-        "hogashi.vscode-copy-github-permalink"
+        "hogashi.vscode-copy-github-permalink",
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
-  "features": {
-    "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
-  },
+  // "features": {
+  // },
   "mounts": [
-    "source=${localEnv:HOME}/.ssh/config,target=/home/vscode/.ssh/config,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.ssh/id_ed25519,target=/home/vscode/.ssh/id_ed25519,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh/config,target=/home/vscode/.ssh/config,type=bind,consistency=cached,readonly=false",
+    "source=${localEnv:HOME}/.ssh/id_ed25519,target=/home/vscode/.ssh/id_ed25519,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.ssh/known_hosts,target=/home/vscode/.ssh/known_hosts,type=bind,consistency=cached",
+    "source=${env:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
