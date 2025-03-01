@@ -27,7 +27,13 @@
         "fill-labs.dependi",
         "formulahendry.code-runner",
         "hilleer.yaml-plus-json",
-        "tberman.json-schema-validator"
+        "tberman.json-schema-validator",
+        "github.vscode-github-actions",
+        "codezombiech.gitignore",
+        "bierner.github-markdown-preview",
+        "eamodio.gitlens",
+        "foxundermoon.shell-format",
+        "hogashi.vscode-copy-github-permalink"
       ]
     }
   },

@@ -3,9 +3,9 @@ services:
     image: ghcr.io/phenix3443/devcontainer-golang:main
 
     # Uncomment next lines to use test Dockerfile with new golang version
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
 
     volumes:
       - ..:/workspace:cached

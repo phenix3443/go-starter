@@ -2,6 +2,7 @@
 ARG VARIANT="1-1.23-bookworm"
 FROM mcr.microsoft.com/devcontainers/go:${VARIANT}
 
+
 # This Dockerfile adds a non-root user with sudo access. Update the “remoteUser” property in
 # devcontainer.json to use it. More info: https://aka.ms/vscode-remote/containers/non-root-user.
 ARG USERNAME=vscode
@@ -21,7 +22,7 @@ ENV PATH=${NVM_DIR}/current/bin:${PATH}
 # Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
 RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends curl ca-certificates iputils-ping bash-completion 2>&1 \
+    && apt-get -y install --no-install-recommends curl ca-certificates iputils-ping bash-completion shfmt 2>&1 \
     && curl -sSL ${COMMON_SCRIPT_SOURCE} -o /tmp/common-setup.sh \
     && /bin/bash /tmp/common-setup.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" \
     #
@@ -36,14 +37,17 @@ RUN apt-get update \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh \
-    #
-    # Install go dependencies
-    && echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list \
+    && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh
+
+# Install go dependencies
+RUN echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list \
     && apt update \
     && apt install goreleaser-pro\
     && go install golang.org/x/tools/cmd/goimports@latest \
     && go install golang.org/x/tools/gopls@latest \
     && go install github.com/spf13/cobra-cli@latest
 
-
+# Install code completions
+COPY script /usr/local/bin/
+RUN chmod +x /usr/local/bin/*.sh
+RUN /usr/local/bin/git-completion.sh
