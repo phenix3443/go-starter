@@ -1,16 +1,16 @@
 name: Unittest with Coverage
 
 on:
+  pull_request:
+    types: [opened, reopened, synchronize]
   push:
     branches:
-      - main
-  pull_request:
+      - "main"
 
 jobs:
-  unittest:
+  unit_tests:
     name: "Unit tests"
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
     name: "Code coverage report"
     if: github.event_name == 'pull_request' # Do not run when workflow is triggered by push to main branch
     runs-on: ubuntu-latest
-    needs: unittest
+    needs: unit_tests
     permissions:
       contents: read
       actions: read
