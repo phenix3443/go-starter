@@ -16,23 +16,12 @@ jobs:
           # Configure which types are allowed (newline-delimited).
           # Default: https://github.com/commitizen/conventional-commit-types
           types: |
-            fix
-            feat
-            refactor
             chore
-          # Configure which scopes are allowed (newline-delimited).
-          # These are regex patterns auto-wrapped in `^ $`.
-          scopes: |
             ci
             docs
-            tests
-          disallowScopes: |
-            release
-
-          # Configure that a scope must always be provided.
-          requireScope: true
-          subjectPattern: ^(?![A-Z]).+$ # Require lowercase PR title
-          subjectPatternError: |
-            The subject "{subject}" found in the pull request title "{title}"
-            didn't match the configured pattern. Please ensure that the subject
-            doesn't start with an uppercase character.
+            feat
+            fix
+            perf
+            refactor
+            style
+            test
