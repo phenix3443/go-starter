@@ -20,8 +20,8 @@ jobs:
         with:
           go-version: stable
 
-      - name: Run Tests with Coverage
-        run: go test -coverprofile=coverage.txt ./...
+      - name: Test
+        run: go test -cover -coverprofile=coverage.txt ./...
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
@@ -39,8 +39,7 @@ jobs:
       actions: read
       pull-requests: write
     steps:
-      - uses: fgrosse/go-coverage-report@v1.1.1 # Consider using a Git revision for maximum security
+      - uses: fgrosse/go-coverage-report@v1.1.1
         with:
-          coverage-artifact-name: "code-coverage" # can be omitted if you used this default value
-          coverage-file-name: "coverage.txt" # can be omitted if you used this default value
-
+          coverage-artifact-name: "code-coverage"
+          coverage-file-name: "coverage.txt"
