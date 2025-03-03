@@ -4,7 +4,7 @@
 build:
 	go build -o build/ ./app/...
 lint:
-	golangci-lint run --new-from-rev=HEAD~1
+	golangci-lint run
 
 ###############################################################################
 ###                        Docker                                           ###
