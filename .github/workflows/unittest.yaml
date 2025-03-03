@@ -21,7 +21,7 @@ jobs:
           go-version: stable
 
       - name: Run Tests with Coverage
-        run: go test ./... -coverprofile=coverage.out
+        run: go test -coverprofile=coverage.txt ./...
 
       - name: Generate HTML Coverage Report
         run: go tool cover -html=coverage.out -o coverage.html
@@ -30,13 +30,20 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: coverage.html
+          path: coverage.txt
 
-      - name: Post Coverage URL to PR
-        if: github.event_name == 'pull_request'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          COMMENT="✅ [Click here to view the Coverage Report]($ARTIFACT_URL)"
-          gh pr comment ${{ github.event.pull_request.number }} --body "$COMMENT"
+  code_coverage:
+    name: "Code coverage report"
+    if: github.event_name == 'pull_request' # Do not run when workflow is triggered by push to main branch
+    runs-on: ubuntu-latest
+    needs: unittest
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+    steps:
+      - uses: fgrosse/go-coverage-report@v1.1.1 # Consider using a Git revision for maximum security
+        with:
+          coverage-artifact-name: "code-coverage" # can be omitted if you used this default value
+          coverage-file-name: "coverage.txt" # can be omitted if you used this default value
+
