@@ -10,7 +10,7 @@ golang starter 是一个适用于 golang 开发环境的配置模板。
   - [x] push docker image to ghcr
   - [x] lint PR by [semantic-pull-request](https://github.com/marketplace/actions/semantic-pull-request)
   - [x] lint code by [golangci-lint](https://github.com/golangci/golangci-lint)
-  - [x] unittest
+  - [x] unittest and coverage report by [go-coverage-report](https://github.com/fgrosse/go-coverage-report)
   - [x] generate release by [goreleaser](https://goreleaser.com/)
 - [x] Test with [testify](https://github.com/stretchr/testify).
 - [x] Add more checks by [Husky](https://typicode.github.io/husky/).
