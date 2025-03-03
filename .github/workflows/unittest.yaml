@@ -8,7 +8,7 @@ on:
 
 jobs:
   unittest:
-    name: Run Unittests and Generate Coverage
+    name: "Unit tests"
     runs-on: ubuntu-latest
 
     steps:
