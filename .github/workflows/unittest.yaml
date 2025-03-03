@@ -1,0 +1,42 @@
+name: Unittest with Coverage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  unittest:
+    name: Run Unittests and Generate Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Run Tests with Coverage
+        run: go test ./... -coverprofile=coverage.out
+
+      - name: Generate HTML Coverage Report
+        run: go tool cover -html=coverage.out -o coverage.html
+
+      - name: Upload Coverage Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.html
+
+      - name: Post Coverage URL to PR
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          COMMENT="✅ [Click here to view the Coverage Report]($ARTIFACT_URL)"
+          gh pr comment ${{ github.event.pull_request.number }} --body "$COMMENT"
