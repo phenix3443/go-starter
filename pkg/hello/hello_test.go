@@ -9,5 +9,5 @@ type HelloTestSuite struct {
 }
 
 func (s *HelloTestSuite) TestHello() {
-	s.Equal("Hello, World", Hello("World"))
+	s.Equal("Hello, World", Greet("World"))
 }
