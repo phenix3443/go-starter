@@ -6,6 +6,12 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+make lint
+if [ $? -ne 0 ]; then
+    echo "Make lint failed, commit aborted."
+    exit 1
+fi
+
 goreleaser check
 if [ $? -ne 0 ]; then
     echo "GoReleaser check failed, commit aborted."
