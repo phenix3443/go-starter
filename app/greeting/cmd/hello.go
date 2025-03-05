@@ -26,5 +26,5 @@ var helloCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(helloCmd)
 	helloCmd.Flags().String(FlagUsername, "me", "say hello to this user")
-	_ = viper.BindPFlag(fmt.Sprintf("hello.%s", FlagUsername), helloCmd.Flags().Lookup(FlagUsername))
+	viper.BindPFlag(fmt.Sprintf("hello.%s", FlagUsername), helloCmd.Flags().Lookup(FlagUsername)) //nolint
 }
