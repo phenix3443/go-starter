@@ -31,6 +31,9 @@ RUN curl -sSL ${NODE_SCRIPT_SOURCE} -o /tmp/node-setup.sh \
     && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}" \
     && npm install -g cspell@latest
 
+# Install database tools
+RUN apt-get install -y postgresql-client mysql-client redis-tools
+
 # Install go dependencies
 RUN go install github.com/goreleaser/goreleaser/v2@latest \
     && go install golang.org/x/tools/cmd/goimports@latest \

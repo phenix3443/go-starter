@@ -35,7 +35,9 @@
         "ms-azuretools.vscode-docker",
         "mtxr.sqltools",
         "mtxr.sqltools-driver-mysql",
-        "mtxr.sqltools-driver-pg"
+        "mtxr.sqltools-driver-pg",
+        "jeppeandersen.vscode-kafka",
+        "cweijan.vscode-redis-client"
       ]
     }
   },
