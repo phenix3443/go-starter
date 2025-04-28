@@ -1,6 +1,7 @@
 services:
-  golang:
+  app:
     image: ghcr.io/phenix3443/devcontainer-golang:main
+    # pull_policy: always
 
     # Uncomment next lines to use test Dockerfile with new golang version
     # build:
@@ -10,38 +11,64 @@ services:
     volumes:
       - ..:/workspace:cached
     # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
-    networks: 
+    networks:
       - golang-dev
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
-
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - golang-dev
+  mysql:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - golang-dev
   postgres:
     image: postgres:17
     command: postgres -c 'max_connections=250'
     restart: unless-stopped
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: app
     networks:
       - golang-dev
-  redis:
-    image: redis:alpine
+  kafka:
+    image: confluentinc/cp-kafka:latest
     restart: unless-stopped
+    depends_on:
+      - zookeeper
     ports:
-      - "6379:6379"
-    volumes:
-      - redis-data:/data
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - golang-dev
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    restart: unless-stopped
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
     networks:
       - golang-dev
 
 networks:
   golang-dev:
-    driver: bridge  
-
-volumes:
-  postgres-data:
-  redis-data:
+    driver: bridge

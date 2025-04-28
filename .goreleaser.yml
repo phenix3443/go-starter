@@ -1,14 +1,13 @@
 version: 2
 
-
 before:
   hooks:
     - go mod tidy
 
 builds:
-  - id: "greeting"
-    main: ./app/greeting
-    binary: greeting
+  - id: "server"
+    main: ./app/server
+    binary: server
     goos:
       - darwin
       - linux
@@ -18,13 +17,13 @@ builds:
       - arm64
     ldflags:
       - -s -w
-      - -X main.AppName=greeting
+      - -X main.AppName=server
       - -X main.Version={{.Version}}
       - -X main.Commit={{.ShortCommit}}
     ignore:
       - goos: windows
         goarch: arm64
-        
+
 archives:
   - formats: [tar.gz]
     format_overrides:

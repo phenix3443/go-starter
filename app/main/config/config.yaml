@@ -1,0 +1,22 @@
+mysql: "user:password@tcp(mysql:3306)/app?charset=utf8mb4&parseTime=True&loc=Local"
+postgres: "host=postgres user=postgres password=postgres dbname=app port=5432 sslmode=disable TimeZone=UTC"
+redis: "redis://redis:6379/0"
+kafka:
+  brokers:
+    - kafka:9092
+  topic: "test"
+API:
+  version: "v1"
+  address: ":8080"
+  cors:
+    allow_origin: "*"
+    allow_methods: "GET, POST, PUT, DELETE, OPTIONS"
+    allow_headers: "Content-Type, Authorization"
+    expose_headers: "Content-Length"
+    max_age: 86400
+    allow_credentials: true
+  rate_limit:
+    enabled: true
+    max_requests: 100
+    window_size: 60
+    burst_size: 10

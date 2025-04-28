@@ -9,12 +9,28 @@
       "type": "go",
       "request": "launch",
       "mode": "auto",
-      "program": "${workspaceFolder}/cmd/greeting",
+      "program": "${workspaceFolder}/app/main",
       "args": [
         "--config",
-        "${workspaceFolder}/cmd/greeting/config.json",
+        "${workspaceFolder}/app/main/config/config.yaml",
+        "hello",
+        "--username",
+        "json"
       ],
-      "cwd": "${workspaceFolder}/build"
-    }
+      "preLaunchTask": "build",
+    },
+    {
+      "name": "api",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/app/main",
+      "args": [
+        "--config",
+        "${workspaceFolder}/app/main/config/config.yaml",
+        "api"
+      ],
+      "preLaunchTask": "build",
+    },
   ]
 }

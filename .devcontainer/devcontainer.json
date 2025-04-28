@@ -3,7 +3,7 @@
 {
   "name": "Go Starter",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "golang",
+  "service": "app",
   "workspaceFolder": "/workspace",
   "postCreateCommand": {
     "safe-directory": "git config --local --add safe.directory ${containerWorkspaceFolder}",
@@ -37,7 +37,8 @@
         "mtxr.sqltools-driver-mysql",
         "mtxr.sqltools-driver-pg",
         "jeppeandersen.vscode-kafka",
-        "cweijan.vscode-redis-client"
+        "cweijan.vscode-redis-client",
+        "humao.rest-client"
       ]
     }
   },
