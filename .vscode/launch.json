@@ -17,7 +17,7 @@
         "--username",
         "json"
       ],
-      "preLaunchTask": "build",
+      "preLaunchTask": "build"
     },
     {
       "name": "api",
@@ -30,7 +30,7 @@
         "${workspaceFolder}/app/main/config/config.yaml",
         "api"
       ],
-      "preLaunchTask": "build",
-    },
+      "preLaunchTask": "build"
+    }
   ]
 }

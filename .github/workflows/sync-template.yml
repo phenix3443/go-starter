@@ -1,5 +1,8 @@
 name: Sync Template Repo
 
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
 
@@ -8,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Add Upstream Repo
         run: |
