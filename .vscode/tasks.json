@@ -10,6 +10,16 @@
         "reveal": "silent"
       },
       "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "image",
+      "command": "make build-docker",
+      "presentation": {
+        "close": true,
+        "reveal": "silent"
+      },
+      "problemMatcher": []
     }
   ]
 }
