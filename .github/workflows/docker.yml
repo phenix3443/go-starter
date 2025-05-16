@@ -5,10 +5,14 @@ on:
     branches:
       - main
     tags:
-      - "v*.*.*"
+      - v*.*.*
   workflow_dispatch:
   schedule:
-    - cron: "0 1 * * *"
+    - cron: 0 1 * * *
+
+permissions:
+  contents: read
+  packages: write
 
 env:
   DOCKER_REGISTRY: ghcr.io

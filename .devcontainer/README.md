@@ -40,12 +40,12 @@ Key benefits include:
 
    c. Uncomment the `mounts` section:
 
-      ```json
-      "mounts": [
-        "source=${localEnv:HOME}/.ssh/config,target=/home/vscode/.ssh/config,type=bind,consistency=cached",
-        "source=${localEnv:HOME}/.ssh/id_ed25519,target=/home/vscode/.ssh/id_ed25519,type=bind,consistency=cached"
-      ],
-      ```
+   ```json
+   "mounts": [
+     "source=${localEnv:HOME}/.ssh/config,target=/home/vscode/.ssh/config,type=bind,consistency=cached",
+     "source=${localEnv:HOME}/.ssh/id_ed25519,target=/home/vscode/.ssh/id_ed25519,type=bind,consistency=cached"
+   ],
+   ```
 
    d. Adjust the paths or ssh file name if your SSH keys are stored in a different location.
 
@@ -54,6 +54,7 @@ Key benefits include:
 4. When prompted, click "Reopen in Container". If not prompted, press `F1`, type "Remote-Containers: Reopen in Container", and press Enter.
 
 5. VS Code will build the devcontainer. This process includes:
+
    - Pulling the base Docker image
    - Installing specified VS Code extensions
    - Installing project dependencies
