@@ -38,7 +38,8 @@
         "mtxr.sqltools-driver-pg",
         "jeppeandersen.vscode-kafka",
         "cweijan.vscode-redis-client",
-        "humao.rest-client"
+        "humao.rest-client",
+        "trunk.io"
       ]
     }
   },

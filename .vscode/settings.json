@@ -1,29 +1,29 @@
 {
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "mysql",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "app",
-            "group": "app",
-            "database": "app",
-            "username": "user",
-            "password": "password"
-        },
-        {
-            "previewLimit": 50,
-            "server": "postgres",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "name": "postgres",
-            "database": "app",
-            "username": "postgres",
-            "password": "postgres"
-        }
-    ]
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "mysql",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "app",
+      "group": "app",
+      "database": "app",
+      "username": "user",
+      "password": "password"
+    },
+    {
+      "previewLimit": 50,
+      "server": "postgres",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "postgres",
+      "database": "app",
+      "username": "postgres",
+      "password": "postgres"
+    }
+  ]
 }
