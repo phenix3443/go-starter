@@ -1,4 +1,3 @@
-
 ARG VARIANT="1-1.23-bookworm"
 FROM mcr.microsoft.com/devcontainers/go:${VARIANT}
 
@@ -19,7 +18,7 @@ ARG COMMON_SCRIPT_SOURCE="https://raw.githubusercontent.com/microsoft/vscode-dev
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends curl ca-certificates build-essential iputils-ping bash-completion shfmt 2>&1 \
     && curl -sSL ${COMMON_SCRIPT_SOURCE} -o /tmp/common-setup.sh \
-    && /bin/bash /tmp/common-setup.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" 
+    && /bin/bash /tmp/common-setup.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}"
 
 # Install Node.js for use with web applications
 ARG NODE_VERSION="20"
@@ -49,3 +48,6 @@ RUN  bash /usr/local/bin/git-completion.sh
 RUN apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh
+
+USER ${USERNAME}
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 CMD [ "bash", "-c", "echo ok" ]
