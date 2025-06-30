@@ -7,8 +7,7 @@
   "workspaceFolder": "/workspace",
   "postCreateCommand": {
     "safe-directory": "git config --local --add safe.directory ${containerWorkspaceFolder}",
-    "go-tidy": "go env -w GOMODCACHE=/home/vscode/.go-cache && go env -w GOSUMDB=off &&  go mod tidy && go generate ./...",
-    "npm-install": "npm install -g npm@11.1.0 && npm install"
+    "go-tidy": "go env -w GOMODCACHE=/home/vscode/.go-cache && go env -w GOSUMDB=off &&  go mod tidy && go generate ./..."
   },
   "customizations": {
     "vscode": {

@@ -5,9 +5,7 @@ extends: default
 rules:
   document-start: disable
   line-length: disable
-  quoted-strings:
-    required: only-when-needed
-    extra-allowed: ["{|}"]
+  quoted-strings: disable
   octal-values:
     forbid-implicit-octal: true
   truthy: disable
