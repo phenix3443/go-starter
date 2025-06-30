@@ -3,6 +3,7 @@ version: "0.2"
 ignorePaths: []
 dictionaryDefinitions: []
 dictionaries: []
-words: []
+words:
+  - confluentinc
 ignoreWords: []
 import: []

@@ -54,7 +54,6 @@ Key benefits include:
 4. When prompted, click "Reopen in Container". If not prompted, press `F1`, type "Remote-Containers: Reopen in Container", and press Enter.
 
 5. VS Code will build the devcontainer. This process includes:
-
    - Pulling the base Docker image
    - Installing specified VS Code extensions
    - Installing project dependencies

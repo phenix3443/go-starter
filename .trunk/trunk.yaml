@@ -17,6 +17,8 @@ runtimes:
     - python@3.10.8
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
+  disabled:
+    - yamllint
   enabled:
     - actionlint@1.7.7
     - checkov@3.2.447
@@ -30,7 +32,6 @@ lint:
     - shellcheck@0.10.0
     - shfmt@3.6.0
     - trufflehog@3.89.2
-    - yamllint@1.37.1
 actions:
   disabled:
     - trunk-announce
@@ -39,3 +40,6 @@ actions:
     - trunk-fmt-pre-commit
     - trunk-check-pre-push
     - trunk-upgrade-available
+tools:
+  enabled:
+    - goimports@0.9.1

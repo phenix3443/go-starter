@@ -30,22 +30,18 @@
 ### 🧹 代码风格与 Lint（通过 Husky + lint-staged）
 
 - **Go 语言**
-
   - 格式化：[goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
   - Lint：[golangci-lint](https://github.com/golangci/golangci-lint)
 
 - **Shell 脚本**
-
   - ✅ 格式化：[shfmt](https://github.com/patrickvane/shfmt)
   - 🚧 Lint（未启用）：[shellcheck](https://www.shellcheck.net/)
 
 - **Markdown**
-
   - 格式化：[prettier](https://prettier.io/)
   - Lint：[markdownlint](https://github.com/DavidAnson/markdownlint)
 
 - **YAML**
-
   - 格式化：[prettier](https://prettier.io/)
 
 - **提交信息规范化**
