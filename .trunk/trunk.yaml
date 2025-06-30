@@ -41,4 +41,5 @@ actions:
     - trunk-upgrade-available
 tools:
   enabled:
+    - yamlfmt@0.17.2
     - goimports@0.9.1
