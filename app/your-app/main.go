@@ -8,7 +8,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/phenix3443/go-starter/app/main/cmd"
+	"github.com/phenix3443/go-starter/app/your-app/cmd"
 )
 
 func main() {

@@ -1,0 +1,52 @@
+# Go Starter 应用配置文件模板
+# 复制此文件为 config.yaml 并根据环境修改相应配置
+
+# 应用配置
+app:
+  name: "go-starter"
+  version: "1.0.0"
+  environment: "development" # development, staging, production
+  debug: true
+
+# 数据库配置（URL形式）
+mysql: "user:password@tcp(localhost:3306)/your_database_name?charset=utf8mb4&parseTime=True&loc=Local"
+postgres: "host=localhost user=postgres password=postgres dbname=your_database_name port=5432 sslmode=disable TimeZone=Local"
+
+# Redis 缓存配置
+redis: "redis://localhost:6379/0"
+
+# Kafka 消息队列配置（可选）
+kafka:
+  brokers:
+    - "localhost:9092"
+  topic: "test"
+
+# API 服务配置
+api:
+  version: "v1"
+  address: ":8080"
+  read_timeout: 30
+  write_timeout: 30
+  idle_timeout: 60
+  
+  # CORS 跨域配置
+  cors:
+    allow_origin: "*"
+    allow_methods: "GET, POST, PUT, DELETE, OPTIONS"
+    allow_headers: "Content-Type, Authorization"
+    expose_headers: "Content-Length"
+    max_age: 86400
+    allow_credentials: true
+  
+  # 限流配置
+  rate_limit:
+    enabled: true
+    max_requests: 1000
+    window_size: 60
+    burst_size: 100
+
+# 日志配置
+log:
+  level: "debug"
+  format: "json"
+  output: "stdout"

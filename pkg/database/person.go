@@ -3,8 +3,9 @@ package database
 import (
 	"fmt"
 
-	"github.com/phenix3443/go-starter/pkg/database/models"
 	"gorm.io/gorm/clause"
+
+	"github.com/phenix3443/go-starter/pkg/database/models"
 )
 
 func (db *AppDB) SavePerson(person *models.Person) error {

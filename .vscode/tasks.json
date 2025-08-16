@@ -2,24 +2,100 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "go: format",
       "type": "shell",
-      "label": "build",
-      "command": "make build",
+      "command": "goimports",
+      "args": ["-w", "-local", "github.com/phenix3443/go-starter", "${file}"],
+      "group": "build",
       "presentation": {
-        "close": true,
-        "reveal": "silent"
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
       },
       "problemMatcher": []
     },
     {
+      "label": "go: fmt",
       "type": "shell",
-      "label": "image",
-      "command": "make build-docker",
+      "command": "gofmt",
+      "args": ["-w", "${file}"],
+      "group": "build",
       "presentation": {
-        "close": true,
-        "reveal": "silent"
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
       },
       "problemMatcher": []
+    },
+    {
+      "label": "go: lint",
+      "type": "shell",
+      "command": "golangci-lint",
+      "args": ["run", "--timeout=5m"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$golangci-lint"]
+    },
+    {
+      "label": "go: lint-fast",
+      "type": "shell",
+      "command": "golangci-lint",
+      "args": ["run", "--timeout=2m", "--new-from-rev=HEAD~1"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$golangci-lint"]
+    },
+    {
+      "label": "go: build",
+      "type": "shell",
+      "command": "go",
+      "args": ["build", "-o", "build/", "./app/..."],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$go"]
+    },
+    {
+      "label": "go: test",
+      "type": "shell",
+      "command": "go",
+      "args": ["test", "-v", "-cover", "./..."],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$go"]
     }
   ]
 }
